@@ -2,7 +2,13 @@ import React from "react"
 
 const HelpPage: React.VFC = () => {
     return (
-        <h1>Help Page</h1>
+        <div className="align-center">
+            <h1>ヘルプ</h1>
+            <p>
+                使い方を説明します。<br />
+                このサイトはログインが必須です。
+            </p>
+        </div>
     )
 }
 
