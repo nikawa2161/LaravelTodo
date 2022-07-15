@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 import TaskPage from './pages/tasks';
-import LoginPage from './pages/help';
-import HelpPage from './pages/login';
+import LoginPage from './pages/login';
+import HelpPage from './pages/help';
 
 const Router = () => {
     return (
