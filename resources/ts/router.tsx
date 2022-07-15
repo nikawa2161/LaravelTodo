@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
+import TaskPage from './pages/tasks';
 
 const Router = () => {
     return (
@@ -27,7 +28,7 @@ const Router = () => {
                         <Users />
                     </Route>
                     <Route path="/">
-                        <Home />
+                        <TaskPage />
                     </Route>
                 </Switch>
             </div>

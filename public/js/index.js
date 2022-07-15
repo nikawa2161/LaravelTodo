@@ -61,10 +61,10 @@ react_dom_1["default"].render((0, jsx_runtime_1.jsx)(app_1["default"], {}), docu
 
 /***/ }),
 
-/***/ "./resources/ts/router.tsx":
-/*!*********************************!*\
-  !*** ./resources/ts/router.tsx ***!
-  \*********************************/
+/***/ "./resources/ts/pages/tasks/index.tsx":
+/*!********************************************!*\
+  !*** ./resources/ts/pages/tasks/index.tsx ***!
+  \********************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
@@ -76,7 +76,40 @@ Object.defineProperty(exports, "__esModule", ({
 
 var jsx_runtime_1 = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
+var TaskPage = function TaskPage() {
+  return (0, jsx_runtime_1.jsx)("h1", {
+    children: "Task Page"
+  });
+};
+
+exports["default"] = TaskPage;
+
+/***/ }),
+
+/***/ "./resources/ts/router.tsx":
+/*!*********************************!*\
+  !*** ./resources/ts/router.tsx ***!
+  \*********************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var jsx_runtime_1 = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
 var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+var tasks_1 = __importDefault(__webpack_require__(/*! ./pages/tasks */ "./resources/ts/pages/tasks/index.tsx"));
 
 var Router = function Router() {
   return (0, jsx_runtime_1.jsx)(react_router_dom_1.BrowserRouter, {
@@ -115,7 +148,7 @@ var Router = function Router() {
         })), (0, jsx_runtime_1.jsx)(react_router_dom_1.Route, Object.assign({
           path: "/"
         }, {
-          children: (0, jsx_runtime_1.jsx)(Home, {})
+          children: (0, jsx_runtime_1.jsx)(tasks_1["default"], {})
         }))]
       })]
     })
