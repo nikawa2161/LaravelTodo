@@ -1,8 +1,9 @@
-import React from "react";
+import React from "react"
+import Router from "./router"
 
 const App = () => {
     return (
-        <h1>Laravel SPA</h1>
+        <Router />
     )
 }
 
