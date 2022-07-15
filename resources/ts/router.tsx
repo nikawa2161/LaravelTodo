@@ -1,31 +1,28 @@
 import React from "react";
 import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 import TaskPage from './pages/tasks';
+import LoginPage from './pages/help';
+import HelpPage from './pages/login';
 
 const Router = () => {
     return (
         <BrowserRouter>
             <div>
-                <nav>
+                <header className="global-head">
                     <ul>
-                        <li>
-                            <Link to="/">Home</Link>
-                        </li>
-                        <li>
-                            <Link to="/about">About</Link>
-                        </li>
-                        <li>
-                            <Link to="/users">Users</Link>
-                        </li>
+                        <li><Link to="/">ホーム</Link></li>
+                        <li><Link to="/help">ヘルプ</Link></li>
+                        <li><Link to="/login">ログイン</Link></li>
+                        <li><span>ログアウト</span></li>
                     </ul>
-                </nav>
+                </header>
 
                 <Switch>
-                    <Route path="/about">
-                        <About />
+                    <Route path="/help">
+                        <HelpPage />
                     </Route>
-                    <Route path="/users">
-                        <Users />
+                    <Route path="/login">
+                        <LoginPage />
                     </Route>
                     <Route path="/">
                         <TaskPage />
@@ -35,17 +32,5 @@ const Router = () => {
         </BrowserRouter>
     );
 };
-
-function Home() {
-    return <h2>Home</h2>;
-}
-
-function About() {
-    return <h2>About</h2>;
-}
-
-function Users() {
-    return <h2>Users</h2>;
-}
 
 export default Router;
