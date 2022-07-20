@@ -2320,10 +2320,10 @@ exports["default"] = LoginPage;
 
 /***/ }),
 
-/***/ "./resources/ts/pages/tasks/index.tsx":
-/*!********************************************!*\
-  !*** ./resources/ts/pages/tasks/index.tsx ***!
-  \********************************************/
+/***/ "./resources/ts/pages/tasks/components/TaskInput.tsx":
+/*!***********************************************************!*\
+  !*** ./resources/ts/pages/tasks/components/TaskInput.tsx ***!
+  \***********************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
@@ -2335,9 +2335,98 @@ Object.defineProperty(exports, "__esModule", ({
 
 var jsx_runtime_1 = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
-var TaskQuery_1 = __webpack_require__(/*! ../../queries/TaskQuery */ "./resources/ts/queries/TaskQuery.ts");
+var TaskInput = function TaskInput() {
+  return (0, jsx_runtime_1.jsx)("form", Object.assign({
+    className: "input-form"
+  }, {
+    children: (0, jsx_runtime_1.jsxs)("div", Object.assign({
+      className: "inner"
+    }, {
+      children: [(0, jsx_runtime_1.jsx)("input", {
+        type: "text",
+        className: "input",
+        placeholder: "TODO\u3092\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044\u3002",
+        defaultValue: ""
+      }), (0, jsx_runtime_1.jsx)("button", Object.assign({
+        className: "btn is-primary"
+      }, {
+        children: "\u8FFD\u52A0"
+      }))]
+    }))
+  }));
+};
 
-var TaskPage = function TaskPage() {
+exports["default"] = TaskInput;
+
+/***/ }),
+
+/***/ "./resources/ts/pages/tasks/components/TaskItem.tsx":
+/*!**********************************************************!*\
+  !*** ./resources/ts/pages/tasks/components/TaskItem.tsx ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var jsx_runtime_1 = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+var TaskItem = function TaskItem(_ref) {
+  var task = _ref.task;
+  return (0, jsx_runtime_1.jsxs)("li", {
+    children: [(0, jsx_runtime_1.jsx)("label", Object.assign({
+      className: "checkbox-label"
+    }, {
+      children: (0, jsx_runtime_1.jsx)("input", {
+        type: "checkbox",
+        className: "checkbox-input"
+      })
+    })), (0, jsx_runtime_1.jsx)("div", {
+      children: (0, jsx_runtime_1.jsx)("span", {
+        children: task.title
+      })
+    }), (0, jsx_runtime_1.jsx)("button", Object.assign({
+      className: "btn is-delete"
+    }, {
+      children: "\u524A\u9664"
+    }))]
+  });
+};
+
+exports["default"] = TaskItem;
+
+/***/ }),
+
+/***/ "./resources/ts/pages/tasks/components/TaskList.tsx":
+/*!**********************************************************!*\
+  !*** ./resources/ts/pages/tasks/components/TaskList.tsx ***!
+  \**********************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var jsx_runtime_1 = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+var TaskQuery_1 = __webpack_require__(/*! ../../../queries/TaskQuery */ "./resources/ts/queries/TaskQuery.ts");
+
+var TaskItem_1 = __importDefault(__webpack_require__(/*! ./TaskItem */ "./resources/ts/pages/tasks/components/TaskItem.tsx"));
+
+var TaskList = function TaskList() {
   var _ref = (0, TaskQuery_1.useTasks)(),
       tasks = _ref.data,
       status = _ref.status;
@@ -2360,48 +2449,16 @@ var TaskPage = function TaskPage() {
     }));
   }
 
-  return (0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, {
-    children: [(0, jsx_runtime_1.jsx)("form", Object.assign({
-      className: "input-form"
-    }, {
-      children: (0, jsx_runtime_1.jsxs)("div", Object.assign({
-        className: "inner"
-      }, {
-        children: [(0, jsx_runtime_1.jsx)("input", {
-          type: "text",
-          className: "input",
-          placeholder: "TODO\u3092\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044\u3002",
-          defaultValue: ""
-        }), (0, jsx_runtime_1.jsx)("button", Object.assign({
-          className: "btn is-primary"
-        }, {
-          children: "\u8FFD\u52A0"
-        }))]
-      }))
-    })), (0, jsx_runtime_1.jsx)("div", Object.assign({
+  return (0, jsx_runtime_1.jsx)(jsx_runtime_1.Fragment, {
+    children: (0, jsx_runtime_1.jsx)("div", Object.assign({
       className: "inner"
     }, {
       children: (0, jsx_runtime_1.jsxs)("ul", Object.assign({
         className: "task-list"
       }, {
         children: [tasks.map(function (task) {
-          return (0, jsx_runtime_1.jsxs)("li", {
-            children: [(0, jsx_runtime_1.jsx)("label", Object.assign({
-              className: "checkbox-label"
-            }, {
-              children: (0, jsx_runtime_1.jsx)("input", {
-                type: "checkbox",
-                className: "checkbox-input"
-              })
-            })), (0, jsx_runtime_1.jsx)("div", {
-              children: (0, jsx_runtime_1.jsx)("span", {
-                children: task.title
-              })
-            }), (0, jsx_runtime_1.jsx)("button", Object.assign({
-              className: "btn is-delete"
-            }, {
-              children: "\u524A\u9664"
-            }))]
+          return (0, jsx_runtime_1.jsx)(TaskItem_1["default"], {
+            task: task
           }, task.id);
         }), (0, jsx_runtime_1.jsxs)("li", {
           children: [(0, jsx_runtime_1.jsx)("label", Object.assign({
@@ -2494,7 +2551,42 @@ var TaskPage = function TaskPage() {
           }))]
         })]
       }))
-    }))]
+    }))
+  });
+};
+
+exports["default"] = TaskList;
+
+/***/ }),
+
+/***/ "./resources/ts/pages/tasks/index.tsx":
+/*!********************************************!*\
+  !*** ./resources/ts/pages/tasks/index.tsx ***!
+  \********************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var jsx_runtime_1 = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+var TaskInput_1 = __importDefault(__webpack_require__(/*! ./components/TaskInput */ "./resources/ts/pages/tasks/components/TaskInput.tsx"));
+
+var TaskList_1 = __importDefault(__webpack_require__(/*! ./components/TaskList */ "./resources/ts/pages/tasks/components/TaskList.tsx"));
+
+var TaskPage = function TaskPage() {
+  return (0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, {
+    children: [(0, jsx_runtime_1.jsx)(TaskInput_1["default"], {}), (0, jsx_runtime_1.jsx)(TaskList_1["default"], {})]
   });
 };
 
