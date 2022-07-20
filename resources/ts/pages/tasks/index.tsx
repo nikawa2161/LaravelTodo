@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
 import axios from "axios"
+import {useQuery} from 'react-query'
 
 type Task = {
     id: number
@@ -8,18 +9,36 @@ type Task = {
     created_at: Date
     updated_at: Date
 }
-const TaskPage: React.VFC = () => {
+const TaskPage: React.FC = () => {
 
-    const [tasks, setTasks] = useState<Task[]>([])
-    const getTasks = async () => {
+    // const [tasks, setTasks] = useState<Task[]>([])
+    // const getTasks = async () => {
+    //     const { data } = await axios.get<Task[]>("api/tasks");
+
+    //     setTasks(data)
+    // }
+
+    // useEffect(() => {
+    //     getTasks();
+    // })
+
+    // const { data:tasks, status } = useQuery('tasks', async () => {
+    //     const data = await axios.get<Task[]>('api/tasks');
+    //     return data
+    // })
+
+    const { data: tasks, status } = useQuery("tasks", async () => {
         const { data } = await axios.get<Task[]>("api/tasks");
+        return data;
+    });
 
-        setTasks(data)
+    if (status === "loading") {
+        return <div className="loader" />
+    } else if (status === "error") {
+        return <div className="align-center">データの読み込みに失敗しました。</div>
+    } else if (!tasks || tasks.length <= 0) {
+        return <div className="align-center">登録されたデータはありません</div>
     }
-
-    useEffect(() => {
-        getTasks();
-    })
 
     return (
         <>
@@ -36,7 +55,7 @@ const TaskPage: React.VFC = () => {
             </form>
             <div className="inner">
                 <ul className="task-list">
-                    { tasks.map(task => (
+                    { tasks.map((task:any) => (
                         <li key={ task.id }>
                             <label className="checkbox-label">
                                 <input type="checkbox" className="checkbox-input" />
