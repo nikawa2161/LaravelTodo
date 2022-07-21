@@ -6,13 +6,26 @@ const getTasks = async () => {
     return data;
 };
 
-const updateDoneTask = async ({ id, is_done}: Task) => {
-    const { data } = await axios.patch<Task[]>(
+const updateDoneTask = async ({ id, is_done }: Task) => {
+    const { data } = await axios.patch<Task>(
         // 変数に入れるためにバッククォートで囲む
         `/api/tasks/update-done/${id}`,
         { is_done: !is_done }
     )
     return data
-};
+}
 
-export { getTasks, updateDoneTask };
+const createTask = async (title: string) => {
+    const { data } = await axios.post<Task>(
+        // 変数に入れるためにバッククォートで囲む
+        `/api/tasks`,
+        { title: title }
+    )
+    return data
+}
+
+export {
+    getTasks,
+    updateDoneTask,
+    createTask
+}
