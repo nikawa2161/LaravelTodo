@@ -1,8 +1,20 @@
 import * as api from "../api/TaskAPI";
-import { useQuery } from "react-query";
+import { useQuery, useMutation, useQueryClient } from "react-query";
 
 const useTasks = () => {
     return useQuery("tasks", async () => api.getTasks());
 };
 
-export { useTasks };
+
+const useUpdateDoneTask = () => {
+    const queryClient = useQueryClient()
+
+    return useMutation(api.updateDoneTask, {
+        onSuccess: () => {
+            queryClient.invalidateQueries('Tasks')
+        }
+    })
+};
+
+
+export { useTasks, useUpdateDoneTask };

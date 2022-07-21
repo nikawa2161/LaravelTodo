@@ -7,7 +7,7 @@ type Props = {
 
 const TaskItem: React.FC<Props> = ({ task }) => {
     return (
-        <li>
+        <li className={task.is_done ? 'done' : ''}>
             <label className="checkbox-label">
                 <input type="checkbox" className="checkbox-input" />
             </label>
