@@ -2407,17 +2407,23 @@ Object.defineProperty(exports, "__esModule", ({
 
 var jsx_runtime_1 = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
+var TaskQuery_1 = __webpack_require__(/*! ../../../queries/TaskQuery */ "./resources/ts/queries/TaskQuery.ts");
+
 var TaskItem = function TaskItem(_ref) {
   var task = _ref.task;
+  var updateDoneTask = (0, TaskQuery_1.useUpdateDoneTask)();
   return (0, jsx_runtime_1.jsxs)("li", Object.assign({
-    className: task.is_done ? 'done' : ''
+    className: task.is_done ? "done" : ''
   }, {
     children: [(0, jsx_runtime_1.jsx)("label", Object.assign({
       className: "checkbox-label"
     }, {
       children: (0, jsx_runtime_1.jsx)("input", {
         type: "checkbox",
-        className: "checkbox-input"
+        className: "checkbox-input",
+        onClick: function onClick() {
+          return updateDoneTask.mutate(task);
+        }
       })
     })), (0, jsx_runtime_1.jsx)("div", {
       children: (0, jsx_runtime_1.jsx)("span", {
