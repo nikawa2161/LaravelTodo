@@ -45,5 +45,49 @@ const useCreateTask = () => {
     });
 };
 
+const useUpdateTask = () => {
+    const queryClient = useQueryClient();
 
-export { useTasks, useUpdateDoneTask, useCreateTask };
+    return useMutation(api.updateTask, {
+        onSuccess: () => {
+            queryClient.invalidateQueries("Tasks");
+            toast.success("更新に成功しました。");
+        },
+        onError: (error: AxiosError) => {
+            if (error.response?.data.errors) {
+                Object.values(error.response?.data.errors).map(
+                    (messages: any) => {
+                        messages.map((message: string) => {
+                            toast.error(message);
+                        });
+                    }
+                );
+            } else {
+                toast.error("更新に失敗しました。");
+            }
+        },
+    });
+};
+
+const useDeleteTask = () => {
+    const queryClient = useQueryClient();
+
+    return useMutation(api.deleteTask, {
+        onSuccess: () => {
+            queryClient.invalidateQueries("Tasks");
+            toast.success("削除に成功しました。");
+        },
+        onError: () => {
+            toast.error("削除に失敗しました。");
+        },
+    });
+};
+
+
+export {
+    useTasks,
+    useUpdateDoneTask,
+    useCreateTask,
+    useUpdateTask,
+    useDeleteTask
+};
