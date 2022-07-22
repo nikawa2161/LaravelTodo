@@ -24,8 +24,25 @@ const createTask = async (title: string) => {
     return data
 }
 
+const updateTask = async ({ id, task }: {id: number, task: Task}) => {
+    const { data } = await axios.put<Task>(
+        // 変数に入れるためにバッククォートで囲む
+        `/api/tasks/${id}`, task
+    );
+    return data;
+};
+
+const deleteTask = async (id: number) => {
+    const { data } = await axios.delete<Task>(
+        `/api/tasks/${id}`
+    );
+    return data;
+};
+
 export {
     getTasks,
     updateDoneTask,
-    createTask
+    createTask,
+    updateTask,
+    deleteTask
 }
